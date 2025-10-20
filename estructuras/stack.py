@@ -11,27 +11,52 @@ Sugerencia:
 """
 
 class Node:
-    # TODO: implementar nodo simple
-    pass
+	def __init__(self, next, value):
+		self.next = next
+		self.value = value
 
 class Stack:
-    # TODO: implementar pila enlazada
-    def push(self, value):
-        """Inserta en el tope. O(1)"""
-        raise NotImplementedError
+	def __init__(self):
+		self.head = None
+		self.length = 0
+	
+	# TODO: implementar pila enlazada
+	def push(self, value):
+		"""Inserta en el tope. O(1)"""
+		temp = None
+		
+		if self.is_empty():
+			self.head = Node(None, value)
+		else:
+			newNode = Node(None, value)
+			newNode.next = self.head
+			self.head = newNode
+		
+		self.length += 1
+		
+	def pop(self):
+	    """Extrae y retorna el tope. O(1). Debe lanzar IndexError si está vacía."""
+	    if self.is_empty():
+	        raise IndexError
 
-    def pop(self):
-        """Extrae y retorna el tope. O(1). Debe lanzar IndexError si está vacía."""
-        raise NotImplementedError
+	    popped_node = self.head
+	    self.head = self.head.next
+	    popped_node.next = None
+	    self.length -= 1
 
-    def peek(self):
-        """Retorna el tope sin extraer. O(1). IndexError si vacía."""
-        raise NotImplementedError
+	    return popped_node.value
 
-    def is_empty(self):
-        """True si no hay elementos. O(1)"""
-        raise NotImplementedError
+	def peek(self):
+		"""Retorna el tope sin extraer. O(1). IndexError si vacía."""
+		if self.is_empty():
+			raise IndexError
 
-    def size(self):
-        """Cantidad de elementos. O(1)"""
-        raise NotImplementedError
+		return self.head.value
+
+	def is_empty(self):
+		"""True si no hay elementos. O(1)"""
+		return self.length == 0
+
+	def size(self):
+		"""Cantidad de elementos. O(1)"""
+		return self.length
