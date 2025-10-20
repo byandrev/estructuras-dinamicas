@@ -11,10 +11,17 @@ Sugerencia:
 """
 
 class DoubleNode:
-    # TODO: implementar nodo doble
-    pass
+    ef __init__(self, next, prev, value):
+        self.next = next
+        self.prev = prev
+        self.value = value
 
 class Queue:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+        self.length = 0
+
     # TODO: implementar cola enlazada doble
     def enqueue(self, value):
         """Inserta al final. O(1)"""
@@ -26,12 +33,15 @@ class Queue:
 
     def peek(self):
         """Retorna el primero sin extraer. O(1). IndexError si vacía."""
-        raise NotImplementedError
+        if self.is_empty():
+            raise IndexError
+
+        return self.tail.value
 
     def is_empty(self):
         """True si la cola está vacía. O(1)"""
-        raise NotImplementedError
+        return self.length == 0
 
     def size(self):
         """Cantidad de elementos. O(1)"""
-        raise NotImplementedError
+        return self.length
