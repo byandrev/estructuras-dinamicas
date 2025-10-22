@@ -21,13 +21,22 @@ from estructuras.queue import Queue
 class QueueManager:
     # TODO: implementar usando Queue internamente.
     def __init__(self):
-        raise NotImplementedError
+        self.queue = Queue()
 
     def add_person(self, nombre: str, tiempo: int) -> None:
-        raise NotImplementedError
+        self.queue.enqueue((nombre, tiempo))
 
     def serve_person(self) -> tuple[str, int]:
-        raise NotImplementedError
+        nombre, tiempo = self.queue.dequeue()
+        return (nombre, tiempo)
 
     def state(self) -> list[str]:
-        raise NotImplementedError
+        head = self.queue.head
+        result = []
+
+        while head is not None:
+            result.append(head.value[0])
+            head = head.next
+
+        return result
+
