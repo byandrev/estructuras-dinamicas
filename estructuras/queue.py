@@ -11,7 +11,7 @@ Sugerencia:
 """
 
 class DoubleNode:
-    ef __init__(self, next, prev, value):
+    def __init__(self, next, prev, value):
         self.next = next
         self.prev = prev
         self.value = value
@@ -24,24 +24,41 @@ class Queue:
 
     # TODO: implementar cola enlazada doble
     def enqueue(self, value):
-        """Inserta al final. O(1)"""
-        raise NotImplementedError
+        new_node = DoubleNode(None, None, value)
+
+        if self.is_empty():
+            self.head = self.tail = new_node
+        else:
+            self.tail.next = new_node
+            new_node.prev = self.tail
+            self.tail = new_node
+
+        self.length += 1
 
     def dequeue(self):
-        """Extrae el primero. O(1). Debe lanzar IndexError si está vacía."""
-        raise NotImplementedError
+        if self.is_empty():
+            raise IndexError("La cola está vacía")
+
+        data = self.head.value
+        self.head = self.head.next
+
+        if self.head:
+            self.head.prev = None
+        else:
+            self.tail = None
+
+        self.length -= 1
+
+        return data
 
     def peek(self):
-        """Retorna el primero sin extraer. O(1). IndexError si vacía."""
         if self.is_empty():
             raise IndexError
 
         return self.tail.value
 
     def is_empty(self):
-        """True si la cola está vacía. O(1)"""
         return self.length == 0
 
     def size(self):
-        """Cantidad de elementos. O(1)"""
         return self.length
