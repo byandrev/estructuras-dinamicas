@@ -19,21 +19,21 @@ class Stack:
 	def __init__(self):
 		self.head = None
 		self.length = 0
-	
+
 	# TODO: implementar pila enlazada
 	def push(self, value):
 		"""Inserta en el tope. O(1)"""
 		temp = None
-		
+
 		if self.is_empty():
 			self.head = Node(None, value)
 		else:
 			newNode = Node(None, value)
 			newNode.next = self.head
 			self.head = newNode
-		
+
 		self.length += 1
-		
+
 	def pop(self):
 	    """Extrae y retorna el tope. O(1). Debe lanzar IndexError si está vacía."""
 	    if self.is_empty():
