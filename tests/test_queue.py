@@ -40,7 +40,7 @@ class TestChallenge2Queue(unittest.TestCase):
 
         state = gestor.state()
 
-        self.assertEqual(state, ["Andres", "Mauricio"])
+        self.assertEqual(state, ["Orlando", "Mauricio"])
 
 
 if __name__ == "__main__":
